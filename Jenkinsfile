@@ -1,5 +1,8 @@
 pipeline {
   agent none
+  environement {
+    SONARQUBE_TOKEN = credentials('sonarqube')
+  }
   tools {
     maven "maven"
   }
@@ -7,8 +10,8 @@ pipeline {
     stage("Build & Analyse avec SonarQube") {
       agent any
       steps {
-        script {
-          sh 'mvn clean package sonar:sonar'
+        withSonarQubeEnv('SonarQube') {
+            sh 'mvn clean verify sonar:sonar -Dsonar.login=${SONARQUBE_TOKEN}'
         }
       }
     }
