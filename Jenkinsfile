@@ -10,7 +10,7 @@ pipeline {
     stage("Build & Analyse avec SonarQube") {
       agent any
       steps {
-        withSonarQubeEnv('SonarQube') {
+        withSonarQubeEnv('sonarqube') {
             sh 'mvn clean verify sonar:sonar -Dsonar.login=${SONARQUBE_TOKEN}'
         }
       }
