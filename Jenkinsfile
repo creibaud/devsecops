@@ -1,6 +1,6 @@
 pipeline {
   agent none
-  environement {
+  environment {
     SONARQUBE_TOKEN = credentials('sonarqube')
   }
   tools {
