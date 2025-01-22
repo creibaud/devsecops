@@ -29,9 +29,8 @@ pipeline {
             odcInstallation: 'owasp-dependency'
         }
 
-        // Publish OWASP Dependency-Check report
         dependencyCheckPublisher(
-          reportFilePattern: 'dependency-check-report.xml'
+          pattern: 'dependency-check-report.xml'
         )
       }
     }
