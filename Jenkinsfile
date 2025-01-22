@@ -19,18 +19,12 @@ pipeline {
     stage("Deploy & OWASP Dependency-Check") {
       agent any
       steps {
-        script {
-          dependencyCheck additionalArguments: '''
-            -o './'
-            -s './'
-            -f 'ALL'
-            --prettyPrint''', 
-            odcInstallation: 'owasp'
-        }
-
-        dependencyCheckPublisher(
-          pattern: 'dependency-check-report.xml'
-        )
+        dependencyCheck additionalArguments: ''' 
+          -o './'
+          -s './'
+          -f 'ALL' 
+          --prettyPrint''', odcInstallation: 'owasp'
+        dependencyCheckPublisher pattern: 'dependency-check-report.xml'
       }
     }
   }
