@@ -20,7 +20,6 @@ pipeline {
       agent any
       steps {
         script {
-          // Run OWASP Dependency-Check
           dependencyCheck additionalArguments: '''
             -o './'
             -s './'
