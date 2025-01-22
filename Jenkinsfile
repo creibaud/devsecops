@@ -20,6 +20,7 @@ pipeline {
       agent any
       steps {
         script {
+          // Run OWASP Dependency-Check
           dependencyCheck additionalArguments: '''
             -o './'
             -s './'
@@ -27,11 +28,11 @@ pipeline {
             --prettyPrint''', 
             odcInstallation: 'owasp-dependency'
         }
-        
-        dependencyCheckPublisher 
-        {
+
+        // Publish OWASP Dependency-Check report
+        dependencyCheckPublisher(
           reportFilePattern: 'dependency-check-report.xml'
-        }
+        )
       }
     }
   }
